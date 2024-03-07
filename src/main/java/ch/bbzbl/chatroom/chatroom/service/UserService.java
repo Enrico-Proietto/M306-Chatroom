@@ -2,7 +2,6 @@ package ch.bbzbl.chatroom.chatroom.service;
 
 import ch.bbzbl.chatroom.chatroom.model.user.User;
 import ch.bbzbl.chatroom.chatroom.repository.UserRepository;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,7 +16,7 @@ public class UserService extends AbstractService<User> {
         return repository.findByEmail(email);
     }
 
-    public User findByPhoneNumber(String phoneNumber) {
+    public User findByPhoneNumber(int phoneNumber) {
         return repository.findByPhoneNumber(phoneNumber);
     }
 
