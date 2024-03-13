@@ -19,7 +19,7 @@ public class LoginController {
     private final SecurityConfig securityConfig;
 	private final SessionController sessionController;
 
-	public LoginController(UserService service, UserController userController, SecurityConfig securityConfig, SessionController sessionController) {
+	public LoginController(UserService service, SecurityConfig securityConfig, SessionController sessionController) {
 		this.service = service;
 		this.securityConfig = securityConfig;
 		this.sessionController = sessionController;
@@ -31,12 +31,19 @@ public class LoginController {
         return "login";
     }
 
+    @GetMapping("/login?error")
+    public String showLoginFormError(Model model) {
+        model.addAttribute("user", new Users());
+        model.addAttribute("error");
+        return "login";
+    }
+
     @PostMapping("/loginUser")
     public String processLogin(Users user) {
         Users userFromDb = service.findByEmail(user.getEmail());
         PasswordEncoder passwordEncoder = securityConfig.passwordEncoder();
 
-        if (passwordEncoder.matches(user.getPassword(), userFromDb.getPassword())) {
+        if (userFromDb != null && passwordEncoder.matches(user.getPassword(), userFromDb.getPassword())) {
             sessionController.setSession(user);
             return "redirect:/chat";
         }
