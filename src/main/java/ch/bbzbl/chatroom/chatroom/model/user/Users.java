@@ -24,4 +24,13 @@ public class Users {
     private Long phoneNumber;
     private String password;
 
+    public void setEmail(String newEmail) {
+        if (!newEmail.contains("@")){
+            throw new IllegalArgumentException("for a new Email an @ is required.");
+        }
+        else {
+            this.email = newEmail;
+        }
+    }
+
 }

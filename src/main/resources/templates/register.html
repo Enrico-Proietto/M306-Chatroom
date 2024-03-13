@@ -1,29 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
+    <link th:href="@{/styles/cssandjs/register.css}" rel="stylesheet">
 </head>
 <body>
+<div id="registerField">
+    <h1 id="title">Register</h1>
 
-<form th:action="@{/registerUser}" th:object="${user}" method="post">
-    <label for="firstname">Firstname:</label>
-    <input type="text" id="firstname" th:field="*{firstname}" required>
+    <form th:action="@{/registerUser}" th:object="${user}" method="post">
+        <label for="firstname"></label>
+        <input type="text" id="firstname" class="registerInput" placeholder="Firstname" th:field="*{firstname}" required>
 
-    <label for="lastname">Lastname:</label>
-    <input type="text" id="lastname" th:field="*{lastname}" required>
-    <br/>
-    <label for="email">Email</label>
-    <input type="email" id="email" th:field="*{email}" required>
-    <br/>
-    <label for="phoneNumber">Phone number</label>
-    <input type="tel" id="phoneNumber" th:field="*{phoneNumber}" required>
-    <br/>
-    <label for="password">Password</label>
-    <input type="password" id="password" th:field="*{password}" required>
-    <br/>
-    <button type="submit">Register</button>
-</form>
+        <label for="lastname"></label>
+        <input type="text" id="lastname" class="registerInput" placeholder="Lastname" th:field="*{lastname}" required>
+        <br/>
 
+        <label for="email"></label>
+        <input type="email" id="email" class="registerInput" placeholder="Email" th:field="*{email}" required>
+        <br/>
+
+        <label for="phoneNumber"></label>
+        <input type="tel" id="phoneNumber" class="registerInput" placeholder="Phone number" th:field="*{phoneNumber}" required>
+
+        <label for="password"></label>
+        <input type="password" id="password" class="registerInput" placeholder="Password" th:field="*{password}" required>
+        <br/>
+
+        <button class="registerButton" type="submit">Register</button>
+    </form>
+    <div id="login">
+       Back to <a th:href="@{/login}">Login</a>
+    </div>
+</div>
 </body>
 </html>

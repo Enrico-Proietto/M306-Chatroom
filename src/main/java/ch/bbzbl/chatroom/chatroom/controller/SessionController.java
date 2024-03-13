@@ -5,11 +5,15 @@ import jakarta.servlet.http.HttpSession;
 import lombok.Getter;
 import org.springframework.stereotype.Controller;
 
+@Getter
 @Controller
 public class SessionController {
 
-	@Getter
-	private HttpSession session;
+	private final HttpSession session;
+
+	public SessionController(HttpSession session) {
+		this.session = session;
+	}
 
 	public void setSession(Users user) {
 		session.setAttribute("user", user);
