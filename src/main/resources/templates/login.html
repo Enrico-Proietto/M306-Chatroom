@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link th:href="@{/styles/cssandjs/login.css}" rel="stylesheet">
+    <link th:href="@{/styles}">
 </head>
 <body>
 
@@ -12,9 +13,9 @@
 </div>
 
 <div id="loginField">
-    <h1 id="title">Login</h1>
+    <h1 id="title">Chatroom</h1>
 
-    <form th:action="@{/login}" th:object="${user}" method="post">
+    <form th:action="@{/loginUser}" th:object="${user}" method="post">
         <label for="email"></label>
         <input type="email" id="email" class="loginInput" placeholder="Email" th:field="*{email}" required/>
         <br/>
