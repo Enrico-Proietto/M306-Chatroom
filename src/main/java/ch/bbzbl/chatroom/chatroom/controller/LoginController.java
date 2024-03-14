@@ -44,7 +44,7 @@ public class LoginController {
         PasswordEncoder passwordEncoder = securityConfig.passwordEncoder();
 
         if (userFromDb != null && passwordEncoder.matches(user.getPassword(), userFromDb.getPassword())) {
-            sessionController.setSession(user);
+            sessionController.setSession(userFromDb);
             return "redirect:/chat";
         }
 

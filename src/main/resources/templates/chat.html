@@ -27,22 +27,14 @@
     <div id="chatroomContainer">
         <ul id="chatroomList">
 
+            <li th:each="chatroom : ${chatrooms}">
+                <button type="submit" th:text="${chatroom.getName()}"></button>
 
-            <li class="chatroomListObject">
-                <p>I am a list Object</p>
-            </li>
-            <li class="chatroomListObject">
-                <p>I am a list Object</p>
-            </li>
-            <li class="chatroomListObject">
-                <p>I am a list Object</p>
-            </li>
-            <li class="chatroomListObject">
-                <p>I am a list Object</p>
-            </li>
-            <li class="chatroomListObject">
-                <p>I am a list Object</p>
-            </li>
+              <!--  <form th:action="@{/doSomething}" method="post">
+                    <input type="hidden" name="eintrag" th:value="${eintrag}" />
+
+                </form>-->
+
         </ul>
     </div>
 
