@@ -79,3 +79,11 @@ body {
 a {
     color: springgreen;
 }
+
+#errorField {
+    margin-left: 48%;
+}
+
+#error {
+    color: red;
+}
