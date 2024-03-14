@@ -15,7 +15,4 @@ public class ChatController {
         model.addAttribute("user", new Users());
         return "chat";
     }
-
-
-
 }
