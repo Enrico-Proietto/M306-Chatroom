@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping
 public class ChatController {
 
-	@GetMapping("/chat")
-	public String showChat(Model model) {
-		model.addAttribute("user", new Users());
-		return "chat";
-	}
-
+    @GetMapping("/chat")
+    public String showChat(Model model) {
+        model.addAttribute("user", new Users());
+        return "chat";
+    }
 }
