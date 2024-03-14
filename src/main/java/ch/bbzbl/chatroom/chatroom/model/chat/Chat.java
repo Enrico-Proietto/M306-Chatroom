@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -21,10 +22,12 @@ public class Chat {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-
     private String name;
-    @ManyToMany
-    @JoinColumn(name = "user_id")
-    private Users user;
     private Date creationDate;
+
+    @ManyToOne
+    private Users creator;
+    @ManyToMany
+    private List<Users> user;
+
 }

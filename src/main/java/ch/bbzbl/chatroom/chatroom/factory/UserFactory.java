@@ -14,6 +14,7 @@ public class UserFactory {
         userDTO.setLastname(user.getLastname());
         userDTO.setEmail(user.getEmail());
         userDTO.setPhoneNumber(user.getPhoneNumber());
+        userDTO.setChat(user.getChat());
 
         return userDTO;
     }

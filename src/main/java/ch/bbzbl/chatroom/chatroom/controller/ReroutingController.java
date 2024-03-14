@@ -19,7 +19,7 @@ public class ReroutingController {
 	@GetMapping("/")
 	public String defaultForm() {
 		HttpSession session = sessionController.getSession();
-		Object user = session.getAttribute("user");
+		Object user = session.getAttribute("userId");
 
 		if (user != null) {
 			return "redirect:/chat";
