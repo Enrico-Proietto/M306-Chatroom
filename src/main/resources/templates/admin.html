@@ -1,0 +1,80 @@
+<!--<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+
+</head>
+<body>
+<h1 style="text-align: center; color: red">You? The ADMIN?!?!</h1>
+<h2 style="text-align: center; color: red">Nice try Jackass</h2>
+
+<img src="https://media1.tenor.com/m/aSkdq3IU0g0AAAAC/laughing-cat.gif" style="border: 5px solid transparent;
+  border-image: linear-gradient(to bottom right, #b827fc 0%, #2c90fc 25%, #b8fd33 50%, #fec837 75%, #fd1892 100%);
+  border-image-slice: 1;
+  margin: 20px auto; ">
+<img src="https://assets-global.website-files.com/646218c67da47160c64a84d5/6463443b4648fab8dc73c49f_45.png">
+<img src="https://media.tenor.com/zAl37cgD2jYAAAAe/blue-meme.png">
+<img src="https://64.media.tumblr.com/ec2f3399b70fbe750574a3a3fb644cd5/569260a0272bfc59-40/s500x750/442992c1b72c06e28210fb7b554f2a1f93b945e0.gifv">
+<img src="https://i.makeagif.com/media/9-21-2023/Hzfiea.gif">
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Images</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            overflow: hidden; /* Prevent scrolling */
+        }
+        .container {
+            position: relative;
+        }
+        .image {
+            position: absolute;
+            width: 400px; /* Adjust as needed */
+            height: auto; /* Adjust as needed */
+        }
+        /* Removed the keyframe animations */
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img class="image" src="https://media1.tenor.com/m/aSkdq3IU0g0AAAAC/laughing-cat.gif" alt="Image 1">
+    <img class="image" src="https://assets-global.website-files.com/646218c67da47160c64a84d5/6463443b4648fab8dc73c49f_45.png" alt="Image 2">
+    <img class="image" src="https://media.tenor.com/zAl37cgD2jYAAAAe/blue-meme.png" alt="Image 3">
+    <img class="image" src="https://64.media.tumblr.com/ec2f3399b70fbe750574a3a3fb644cd5/569260a0272bfc59-40/s500x750/442992c1b72c06e28210fb7b554f2a1f93b945e0.gifv" alt="Image 4">
+    <img class="image" src="https://i.makeagif.com/media/9-21-2023/Hzfiea.gif" alt="Image 5">
+</div>
+
+<script>
+    // Function to generate random translation values
+    function getRandomTranslation() {
+        var maxX = window.innerWidth - 150; // Max X position
+        var maxY = window.innerHeight - 150; // Max Y position
+        var randomX = Math.floor(Math.random() * maxX); // Random X position
+        var randomY = Math.floor(Math.random() * maxY); // Random Y position
+        return { x: randomX, y: randomY };
+    }
+
+    // Apply random translation to each image
+    var images = document.querySelectorAll('.image');
+    images.forEach(function(image) {
+        var translation = getRandomTranslation();
+        image.style.transform = 'translate(' + translation.x + 'px, ' + translation.y + 'px)';
+    });
+</script>
+
+</body>
+</html>

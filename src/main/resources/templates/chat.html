@@ -3,48 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Chat</title>
-    <link th:href="@{/styles/cssandjs/chat.css}" rel="stylesheet">
+    <link th:href="@{/css/chat.css}" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Chatroom</h1>
+<header>
+    <h1>Chatroom</h1>
+</header>
 
+<div>
+    <!--    <div id="chatroomUsers">
+            <ul>
+                <li>
 
-    </header>
+                </li>
+            </ul>
+        </div>-->
 
-
-    <div id="chatroomUsers">
+    <div>
         <ul>
-            <li>
+            <li th:each="message : ${messages}">
+                <div id="chat-messages">
 
+                </div>
             </li>
         </ul>
     </div>
 
     <div id="chatroomInput">
+
+
+        <form th:action="" th:object="${newMessage}" method="post">
+            <input type="text" id="messageInput" placeholder="Message" th:field="*{text}" required>
+            <button id="sendButton" type="submit">Send</button>
+        </form>
+
     </div>
 
     <div id="chatroomContainer">
         <ul id="chatroomList">
 
-
-            <li class="chatroomListObject">
-                <p>I am a list Object</p>
-            </li>
-            <li class="chatroomListObject">
-                <p>I am a list Object</p>
-            </li>
-            <li class="chatroomListObject">
-                <p>I am a list Object</p>
-            </li>
-            <li class="chatroomListObject">
-                <p>I am a list Object</p>
-            </li>
-            <li class="chatroomListObject">
-                <p>I am a list Object</p>
+            <li th:each="chatroom : ${chatrooms}">
+                 <form th:action="@{/chat}" method="get">
+                       <input type="hidden" name="chatID" class="chatID" th:value="${chatroom.getId()}"/>
+                       <button type="submit" th:text="${chatroom.getName()}" th:data-chatId="${chatroom.getId()}"></button>
+                </form>
             </li>
         </ul>
     </div>
+</div>
+
+<script th:src="@{/js/chat.js}"></script>
 
 </body>
 </html>

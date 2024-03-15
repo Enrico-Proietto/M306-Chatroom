@@ -16,6 +16,6 @@ public class SessionController {
 	}
 
 	public void setSession(Users user) {
-		session.setAttribute("user", user);
+		session.setAttribute("userId", user.getId());
 	}
 }
