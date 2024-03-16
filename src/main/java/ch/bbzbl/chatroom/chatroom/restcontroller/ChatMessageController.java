@@ -10,11 +10,14 @@ import ch.bbzbl.chatroom.chatroom.service.UserService;
 import com.sun.jdi.request.InvalidRequestStateException;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @RestController
@@ -44,9 +47,10 @@ public class ChatMessageController {
 			StringBuilder responseBuilder = new StringBuilder();
 
 			for (var message : messages) {
+
 				responseBuilder.append("<p>");
-				responseBuilder.append(String.format("<span class=\"timestamp\">%s</span>", message.getWrittenAt()));
 				responseBuilder.append(String.format("<span class=\"usernanme\">%s %s</span>", message.getAuthor().getFirstname(), message.getAuthor().getLastname()));
+				responseBuilder.append(String.format("<span class=\" timestamp\">%s</span>", message.getWrittenAt()));
 				responseBuilder.append("<br>");
 				responseBuilder.append(String.format("<span class=\"message\">%s</span>", message.getText()));
 				responseBuilder.append("</p>");
@@ -58,14 +62,21 @@ public class ChatMessageController {
 		throw new InvalidRequestStateException("Not logged in");
 	}
 
-/*	@PostMapping("/char/newMessage")
-	public String newMessage(Message message, Model model) {
-		Object userID = sessionController.getSession().getAttribute("userId");
-		Users user = userService.getById((Long) userID);
-		Chat chat = chatService.getById(model.)
+	@PostMapping("/chat/newMessage")
+	public ModelAndView newMessage(Message message) {
+		HttpSession session = sessionController.getSession();
+		Long chatID = (Long) session.getAttribute("chatID");
+		if (session.getAttribute("userId") != null && chatID != null) {
+			Object userID = sessionController.getSession().getAttribute("userId");
+			Users user = userService.getById((Long) userID);
+			Chat chat = chatService.getById(chatID);
 
-		message.setWrittenAt(new Date());
-		message.setAuthor(user);
 
-	}*/
+			message.setWrittenAt(new Date());
+			message.setAuthor(user);
+			message.setChat(chat);
+			messageService.save(message);
+		}
+		return new ModelAndView("redirect:/chat?chatID=" + chatID);
+	}
 }

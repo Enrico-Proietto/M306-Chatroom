@@ -15,7 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class MessageDTO {
     private Long id;
-    private String test;
+    private String text;
     private Date writtenAt;
     private Users author;
     private Chat chat;

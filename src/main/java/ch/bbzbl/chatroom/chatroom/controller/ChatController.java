@@ -42,6 +42,7 @@ public class ChatController {
 
         if (user != null) {
             if (chatID != null) {
+                session.setAttribute("chatID", chatID);
                 model.addAttribute("newMessage", new Message());
                 model.addAttribute("messages", messageService.findMessageByChatId(chatID));
             }
