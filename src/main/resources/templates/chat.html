@@ -3,40 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Chat</title>
-    <link th:href="@{/styles/cssandjs/chat.css}" rel="stylesheet">
+    <link th:href="@{/css/chat.css}" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <h1>Chatroom</h1>
+<body class="grid-container">
 
+<div id="grid-header">
+    <h1>Chatroom</h1>
+</div>
 
-    </header>
+<div id="chatroomUsers" class="grid-userContainer">
+    <ul>
+        <li>
 
+        </li>
+    </ul>
+</div>
 
-    <div id="chatroomUsers">
-        <ul>
-            <li>
+<div class="grid-messageContainer">
+    <ul>
+        <li class="listOfMessages" th:each="message : ${messages}">
+            <div id="chat-messages">
+            </div>
+        </li>
+    </ul>
+</div>
 
-            </li>
-        </ul>
-    </div>
+<div class="grid-footer">
+    <form th:action="@{/chat/newMessage}" th:object="${newMessage}" method="post">
+        <label for="messageInput"></label>
+        <input type="text" id="messageInput" placeholder="Message" field="*{text}" name="text" required>
+        <button id="sendButton" type="submit">Send</button>
+    </form>
+</div>
 
-    <div id="chatroomInput">
-    </div>
+<div id="chatroomContainer" class="grid-chatroomContainer">
+    <h2>Chatrooms</h2>
+    <ul id="chatroomList">
+        <li class="listOfChatrooms" th:each="chatroom : ${chatrooms}">
+            <form th:action="@{/chat}" method="get">
+                <input type="hidden" name="chatID" class="chatID" th:value="${chatroom.getId()}"/>
+                <button class="chatroomButton" type="submit" th:text="${chatroom.getName()}"
+                        th:data-chatId="${chatroom.getId()}"></button>
+            </form>
+        </li>
+    </ul>
+</div>
 
-    <div id="chatroomContainer">
-        <ul id="chatroomList">
-
-            <li th:each="chatroom : ${chatrooms}">
-                <button type="submit" th:text="${chatroom.getName()}"></button>
-
-              <!--  <form th:action="@{/doSomething}" method="post">
-                    <input type="hidden" name="eintrag" th:value="${eintrag}" />
-
-                </form>-->
-
-        </ul>
-    </div>
+<script th:src="@{/js/chat.js}"></script>
 
 </body>
 </html>

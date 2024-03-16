@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 
-public class ChatService extends AbstractService<Chat>{
+public class ChatService extends RepositoryService<Chat> {
     private final ChatRepository repository;
 
     protected ChatService(ChatRepository repository) {
