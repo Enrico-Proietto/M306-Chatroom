@@ -73,10 +73,11 @@ body {
 }
 
 .grid-messageContainer {
+    height: max-content;
     grid-column: 2 / 4;
     grid-row: 2 / 4;
     padding: 10px;
-
+    overflow: auto
 }
 
 .grid-chatroomContainer {
@@ -108,8 +109,59 @@ body {
     margin-bottom: 5px;
     text-align: center;
 
-
     height: 35px;
     width: 45%;
     font-size: 20px;
+}
+
+.chatroomButton:hover {
+    background-color: #61cc80;
+    cursor: pointer;
+}
+
+.messageOutput {
+    margin-bottom: 10px;
+
+}
+
+span.username {
+    font-size: 20px;
+
+}
+
+span.timestamp {
+    font-size: 17px;
+
+}
+
+span.message {
+    font-size: 23px;
+
+}
+
+#logoutButton {
+    height: 25px;
+    width: 100px;
+    border-style: none;
+    border-radius: 6px;
+    font-size: 18px;
+    color : mediumseagreen;
+    background-color: #223A22;
+}
+
+#logoutForm {
+    width: 110px;
+    text-align: right;
+}
+
+.deleteButton {
+    background-color: red;
+    width: 35px;
+    height: 25px;
+    border-style: none;
+}
+
+.deleteButton:hover {
+    background-color: #dd0000;
+    cursor: pointer;
 }

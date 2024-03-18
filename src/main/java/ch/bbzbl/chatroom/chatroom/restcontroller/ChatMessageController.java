@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 @RestController
@@ -48,9 +52,11 @@ public class ChatMessageController {
 
 			for (var message : messages) {
 
-				responseBuilder.append("<p>");
+				String date = String.format("  %td.%tm.%tY, %tH:%tM%n", message.getWrittenAt(), message.getWrittenAt(), message.getWrittenAt(), message.getWrittenAt(), message.getWrittenAt());
+
+				responseBuilder.append("<p class=messageOutput>");
 				responseBuilder.append(String.format("<span class=\"usernanme\">%s %s</span>", message.getAuthor().getFirstname(), message.getAuthor().getLastname()));
-				responseBuilder.append(String.format("<span class=\" timestamp\">%s</span>", message.getWrittenAt()));
+				responseBuilder.append(String.format("<span class=\" timestamp\">%s</span>", date));
 				responseBuilder.append("<br>");
 				responseBuilder.append(String.format("<span class=\"message\">%s</span>", message.getText()));
 				responseBuilder.append("</p>");
@@ -71,8 +77,13 @@ public class ChatMessageController {
 			Users user = userService.getById((Long) userID);
 			Chat chat = chatService.getById(chatID);
 
+			Date dateToTransform = new Date();
+			LocalDateTime time = dateToTransform.toInstant()
+							.atZone(ZoneId.systemDefault())
+							.toLocalDateTime()
+							.truncatedTo(ChronoUnit.MINUTES);
 
-			message.setWrittenAt(new Date());
+			message.setWrittenAt(time);
 			message.setAuthor(user);
 			message.setChat(chat);
 			messageService.save(message);
