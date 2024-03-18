@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -20,7 +21,7 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String text;
-    private Date writtenAt;
+    private LocalDateTime writtenAt;
 
     @ManyToOne
     private Users author;

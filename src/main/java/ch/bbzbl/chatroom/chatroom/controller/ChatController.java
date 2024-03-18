@@ -55,4 +55,9 @@ public class ChatController {
         return "redirect:/login";
     }
 
+    @GetMapping("/logout")
+    public String logout(Model model) {
+        sessionController.setSessionInvalid();
+        return "redirect:/login";
+    }
 }

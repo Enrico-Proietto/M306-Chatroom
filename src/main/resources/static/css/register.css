@@ -51,6 +51,7 @@ body {
 .registerInput {
     height: 50px;
     width: 250px;
+    color: mediumseagreen;
     font-size: 17px;
     margin-top: 20px;
     border-radius: 25px;

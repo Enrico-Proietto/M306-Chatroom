@@ -9,15 +9,20 @@
 
 <div id="grid-header">
     <h1>Chatroom</h1>
+
+    <form id="logoutForm" th:action="@{/logout}" method="get">
+        <button id="logoutButton" type="submit">Logout</button>
+    </form>
 </div>
 
 <div id="chatroomUsers" class="grid-userContainer">
-    <ul>
-        <li>
-
-        </li>
+    <ul th:if="${session.get('chatID') != null}">
+        <!--        <li th:each="user : ${allChatrooms.get(session.get('chatID')).getUser()}">
+                    <p th:text="${user.getFirstname() + ' ' + user.getLastname()}"></p>
+                </li>-->
     </ul>
 </div>
+
 
 <div class="grid-messageContainer">
     <ul>
@@ -37,7 +42,7 @@
 </div>
 
 <div id="chatroomContainer" class="grid-chatroomContainer">
-    <h2>Chatrooms</h2>
+    <h2>Chats</h2>
     <ul id="chatroomList">
         <li class="listOfChatrooms" th:each="chatroom : ${chatrooms}">
             <form th:action="@{/chat}" method="get">
@@ -45,6 +50,12 @@
                 <button class="chatroomButton" type="submit" th:text="${chatroom.getName()}"
                         th:data-chatId="${chatroom.getId()}"></button>
             </form>
+            <div th:if="${chatroom.getCreator().getId() == session.get('userId')}">
+                <button class="deleteButton">
+                    <img style="height: 20px; width: 25px" src="https://static.thenounproject.com/png/4807743-200.png"
+                         alt="">
+                </button>
+            </div>
         </li>
     </ul>
 </div>
