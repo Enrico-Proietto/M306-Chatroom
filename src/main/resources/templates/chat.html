@@ -1,66 +1,78 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="">
-<head>
-    <meta charset="UTF-8">
-    <title>Chat</title>
-    <link th:href="@{/css/chat.css}" rel="stylesheet">
-</head>
-<body class="grid-container">
+    <head>
+        <meta charset="UTF-8">
+        <title>Chat</title>
+        <link th:href="@{/css/chat.css}" rel="stylesheet">
+    </head>
+    <body class="grid-container">
 
-<div id="grid-header">
-    <h1>Chatroom</h1>
+    <div id="grid-header">
+        <h1>Chatroom</h1>
 
-    <form id="logoutForm" th:action="@{/logout}" method="get">
-        <button id="logoutButton" type="submit">Logout</button>
-    </form>
-</div>
+        <!--    <div class="dropdown">
+                <button class="dropbtn"></button>
+                <div class="dropdown-content">
+                    <a th:href="@{/profile.html}"></a>
+                    <a th:action="@{/logout}">Logout</a>
+                </div>
+            </div>-->
 
-<div id="chatroomUsers" class="grid-userContainer">
-    <ul th:if="${session.get('chatID') != null}">
-        <!--        <li th:each="user : ${allChatrooms.get(session.get('chatID')).getUser()}">
-                    <p th:text="${user.getFirstname() + ' ' + user.getLastname()}"></p>
-                </li>-->
-    </ul>
-</div>
+        <form id="logoutForm" th:action="@{/logout}" method="get">
+            <button id="logoutButton" type="submit">Logout</button>
+        </form>
+
+    </div>
+
+    <div id="chatroomUsers" class="grid-userContainer">
+        <ul th:if="${session.get('chatID') != null}">
+            <!--        <li th:each="user : ${allChatrooms.get(session.get('chatID')).getUser()}">
+                        <p th:text="${user.getFirstname() + ' ' + user.getLastname()}"></p>
+                    </li>-->
+        </ul>
+    </div>
 
 
-<div class="grid-messageContainer">
-    <ul>
-        <li class="listOfMessages" th:each="message : ${messages}">
-            <div id="chat-messages">
-            </div>
-        </li>
-    </ul>
-</div>
+    <div class="grid-messageContainer">
+        <ul>
+            <li class="listOfMessages" th:each="message : ${messages}">
+                <div id="chat-messages">
+                </div>
+            </li>
+        </ul>
+    </div>
 
-<div class="grid-footer">
-    <form th:action="@{/chat/newMessage}" th:object="${newMessage}" method="post">
-        <label for="messageInput"></label>
-        <input type="text" id="messageInput" placeholder="Message" field="*{text}" name="text" required>
-        <button id="sendButton" type="submit">Send</button>
-    </form>
-</div>
+    <div class="grid-footer" th:if="${session.get('chatID') != null}">
+        <form th:action="@{/chat/newMessage}" th:object="${newMessage}" method="post">
+            <label for="messageInput"></label>
+            <input type="text" id="messageInput" placeholder="Message" field="*{text}" name="text" required>
+            <button id="sendButton" type="submit">Send</button>
+        </form>
+    </div>
 
-<div id="chatroomContainer" class="grid-chatroomContainer">
-    <h2>Chats</h2>
-    <ul id="chatroomList">
-        <li class="listOfChatrooms" th:each="chatroom : ${chatrooms}">
-            <form th:action="@{/chat}" method="get">
-                <input type="hidden" name="chatID" class="chatID" th:value="${chatroom.getId()}"/>
-                <button class="chatroomButton" type="submit" th:text="${chatroom.getName()}"
-                        th:data-chatId="${chatroom.getId()}"></button>
-            </form>
-            <div th:if="${chatroom.getCreator().getId() == session.get('userId')}">
-                <button class="deleteButton">
-                    <img style="height: 20px; width: 25px" src="https://static.thenounproject.com/png/4807743-200.png"
-                         alt="">
-                </button>
-            </div>
-        </li>
-    </ul>
-</div>
+    <div id="chatroomContainer" class="grid-chatroomContainer">
+        <h2>Chats</h2>
+        <ul id="chatroomList">
+            <li class="listOfChatrooms" th:each="chatroom : ${chatrooms}">
+                <div>
+                    <form th:action="@{/chat}" method="get">
+                        <input type="hidden" name="chatID" class="chatID" th:value="${chatroom.getId()}"/>
+                        <button class="chatroomButton" type="submit" th:text="${chatroom.getName()}"
+                                th:data-chatId="${chatroom.getId()}"></button>
+                    </form>
+                    <div th:if="${chatroom.getCreator().getId() == session.get('userId')}">
+                        <button class="deleteButton">
+                            <img style="height: 20px; width: 25px"
+                                 src="https://static.thenounproject.com/png/4807743-200.png"
+                                 alt="">
+                        </button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
 
-<script th:src="@{/js/chat.js}"></script>
+    <script th:src="@{/js/chat.js}"></script>
 
-</body>
+    </body>
 </html>

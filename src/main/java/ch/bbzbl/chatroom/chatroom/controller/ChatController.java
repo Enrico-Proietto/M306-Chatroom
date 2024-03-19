@@ -17,47 +17,54 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Date;
+import java.util.Objects;
 
 @Controller
 @RequestMapping
 public class ChatController {
 
-    private final SessionController sessionController;
-    private final UserService userService;
-    private final ChatService chatService;
-    private final MessageService messageService;
+	private final SessionController sessionController;
+	private final UserService userService;
+	private final ChatService chatService;
+	private final MessageService messageService;
 
-    public ChatController(SessionController sessionController, UserService userService, ChatService chatService, MessageService messageService) {
-        this.sessionController = sessionController;
-        this.userService = userService;
+	public ChatController(SessionController sessionController, UserService userService, ChatService chatService, MessageService messageService) {
+		this.sessionController = sessionController;
+		this.userService = userService;
 		this.chatService = chatService;
 		this.messageService = messageService;
 	}
 
-    @GetMapping("/chat")
-    public String showChat(@Nullable Long chatID, Model model) {
-        HttpSession session = sessionController.getSession();
-        Object userID = session.getAttribute("userId");
-        Users user = userService.getById((Long) userID);
+	@GetMapping("/chat")
+	public String showChat(@Nullable Long chatID, Model model) {
+		HttpSession session = sessionController.getSession();
+		Object userID = session.getAttribute("userId");
+		Users user = userService.getById((Long) userID);
 
-        if (user != null) {
-            if (chatID != null) {
-                session.setAttribute("chatID", chatID);
-                model.addAttribute("newMessage", new Message());
-                model.addAttribute("messages", messageService.findMessageByChatId(chatID));
-            }
+		if (user != null) {
+			if (chatID != null) {
+				for (Chat chat : user.getChat()) {
+					if (Objects.equals(chat.getId(), chatID)) {
+						session.setAttribute("chatID", chatID);
+						session.setAttribute("user-username", user.getFirstname() + " " + user.getLastname());
+						model.addAttribute("newMessage", new Message());
+						model.addAttribute("messages", messageService.findMessageByChatId(chatID));
+					}
+				}
+			}
 
-            model.addAttribute("chatrooms", user.getChat());
+			model.addAttribute("chatrooms", user.getChat());
 
-            return "chat";
-        }
+			return "chat";
 
-        return "redirect:/login";
-    }
+		}
 
-    @GetMapping("/logout")
-    public String logout(Model model) {
-        sessionController.setSessionInvalid();
-        return "redirect:/login";
-    }
+		return "redirect:/login";
+	}
+
+	@GetMapping("/logout")
+	public String logout(Model model) {
+		sessionController.setSessionInvalid();
+		return "redirect:/login";
+	}
 }
