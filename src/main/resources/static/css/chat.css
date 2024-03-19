@@ -68,8 +68,10 @@ body {
 .grid-userContainer {
     grid-column: 1 / 1;
     grid-row: 2 / 4;
-    padding: 10px;
-
+    background-color: #363A36;
+    text-align: center;
+    border-radius: 4px;
+    margin-top: 5px;
 }
 
 .grid-messageContainer {
@@ -112,6 +114,12 @@ body {
     height: 35px;
     width: 45%;
     font-size: 20px;
+}
+
+.userList {
+    list-style: none;
+    font-size: 22px;
+    padding-left: 10px;
 }
 
 .chatroomButton:hover {
@@ -164,4 +172,35 @@ span.message {
 .deleteButton:hover {
     background-color: #dd0000;
     cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+
+.dropdown-content:hover {
+    display: block;
+}
+
+@media only screen and (max-width: 1678px) {
+    #messageInput {
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 1097px) {
+    #messageInput {
+        width: 86%;
+    }
 }

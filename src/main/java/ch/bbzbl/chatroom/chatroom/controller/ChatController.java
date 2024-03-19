@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -45,8 +46,12 @@ public class ChatController {
 			if (chatID != null) {
 				for (Chat chat : user.getChat()) {
 					if (Objects.equals(chat.getId(), chatID)) {
+						List<Users> listOfUser = userService.findAll();
+						listOfUser.removeAll(chatService.getById(chatID).getUser());
 						session.setAttribute("chatID", chatID);
 						session.setAttribute("user-username", user.getFirstname() + " " + user.getLastname());
+						model.addAttribute("userNotInChatroom", listOfUser);
+						model.addAttribute("userInChatroom", chatService.getById(chatID).getUser());
 						model.addAttribute("newMessage", new Message());
 						model.addAttribute("messages", messageService.findMessageByChatId(chatID));
 					}

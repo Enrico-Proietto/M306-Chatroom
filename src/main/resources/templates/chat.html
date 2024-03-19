@@ -25,10 +25,17 @@
     </div>
 
     <div id="chatroomUsers" class="grid-userContainer">
-        <ul th:if="${session.get('chatID') != null}">
-            <!--        <li th:each="user : ${allChatrooms.get(session.get('chatID')).getUser()}">
+        <div>
+            <h1 id="userTitle">Users</h1>
+<!--            <select >
+                <option th:each="user : ${userNotInChatroom}" value="">
+                </option>
+            </select>-->
+        </div>
+        <ul class="userList" th:if="${session.get('chatID') != null}">
+                    <li th:each="user : ${userInChatroom}">
                         <p th:text="${user.getFirstname() + ' ' + user.getLastname()}"></p>
-                    </li>-->
+                    </li>
         </ul>
     </div>
 
