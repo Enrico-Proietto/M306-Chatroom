@@ -30,4 +30,5 @@ public class Chat {
     @ManyToMany
     private List<Users> user;
 
+
 }

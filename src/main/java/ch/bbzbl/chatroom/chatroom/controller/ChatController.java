@@ -9,10 +9,9 @@ import org.apache.catalina.User;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -40,18 +39,43 @@ public class ChatController {
 
     @GetMapping("/createChat")
     public String showChatForm(Model model) {
-        model.addAttribute("chat", new Chat());
-        return "createChat";
+        HttpSession session = sessionController.getSession();
+        Object userID = session.getAttribute("userId");
+        if (userID != null) {
+            List<Users> availableUsers = userService.findAll();
+
+            model.addAttribute("availableUsers", availableUsers);
+            model.addAttribute("chat", new Chat());
+            return "createChat";
+        }
+        return "redirect:/login";
     }
 
     @PostMapping("/create")
-    public String processChat(Chat chat) {
+    public String processCreateChat(Chat chat) {
+
+        HttpSession session = sessionController.getSession();
+        Object userID = session.getAttribute("userId");
+
+
+        Long userIdLong = (Long) userID;
+        Users creator = userService.getById(userIdLong);
+
+        chat.setCreator(creator);
+        chat.setCreationDate(new Date());
 
 
         service.save(chat);
+
+        List<Chat> list = creator.getChat();
+        list.add(chat);
+        creator.setChat(list);
+        userService.save(creator);
+
+
+
         return "redirect:/chat";
     }
-
     @GetMapping("/chatrooms")
     public void getChatRooms(Model model) {
 

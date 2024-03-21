@@ -12,6 +12,7 @@ public class ChatFactory {
         chatDTO.setId(chat.getId());
         chatDTO.setName(chat.getName());
         chatDTO.setUser(chat.getUser());
+        chatDTO.setCreator(chat.getCreator());
         chatDTO.setCreationDate(chat.getCreationDate());
 
 

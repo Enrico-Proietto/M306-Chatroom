@@ -18,6 +18,7 @@ import java.util.List;
 public class ChatDTO {
     private Long id;
     private String name;
+    private Users creator;
     private List<Users> user;
     private Date creationDate;
 }

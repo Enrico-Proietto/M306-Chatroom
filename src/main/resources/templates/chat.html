@@ -28,7 +28,7 @@
         <ul id="chatroomList">
 
             <li th:each="chatroom : ${chatrooms}">
-                <button type="submit" th:text="${chatroom.getName()}"></button>
+                <button type="submit" th:text="${chatroom.getUser()}"></button>
 
               <!--  <form th:action="@{/doSomething}" method="post">
                     <input type="hidden" name="eintrag" th:value="${eintrag}" />

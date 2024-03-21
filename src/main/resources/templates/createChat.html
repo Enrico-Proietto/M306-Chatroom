@@ -9,16 +9,23 @@
 <div id="chatField">
   <h1 id="title">Chatroom</h1>
 
-  <form th:action="@{/create}" th:object="${chat}" method="post">
+  <form action="/create" method="post" th:object="${chat}">
     <label for="name"></label>
-    <input type="text" id="name" class="chatrInput" placeholder="Name" th:field="*{name}" required>
-
-
-    <br/>
+    <input type="text" id="name" class="chatInput" placeholder="Name" th:field="*{name}" required><br/>
 
 
 
-    <button class="chatButton" type="submit">CreateChat</button>
+    <label><input type="checkbox" name="user" value="user1"> User 1</label><br>
+    <label><input type="checkbox" name="user" value="user2"> User 2</label><br>
+    <label><input type="checkbox" name="user" value="user3"> User 3</label><br>
+
+    <br>
+
+
+
+
+    <br><br>
+    <button class="chatButton" type="submit">Create Chat</button>
   </form>
   <div id="chat">
     Back to <a th:href="@{/chat}">Chats</a>
