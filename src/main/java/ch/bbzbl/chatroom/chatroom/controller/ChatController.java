@@ -68,12 +68,38 @@ public class ChatController {
 
 	@GetMapping("/createChat")
 	public String showChatForm(Model model) {
-		model.addAttribute("chat", new Chat());
-		return "createChat";
+		HttpSession session = sessionController.getSession();
+		Object userID = session.getAttribute("userId");
+		if (userID != null) {
+			List<Users> availableUsers = userService.findAll();
+
+			model.addAttribute("availableUsers", availableUsers);
+			model.addAttribute("chat", new Chat());
+			return "createChat";
+		}
+		return "redirect:/login";
 	}
 
-	@PostMapping("/create")
-	public String processChat(Chat chat) {
+    @PostMapping("/create")
+    public String processCreateChat(Chat chat) {
+
+        HttpSession session = sessionController.getSession();
+        Object userID = session.getAttribute("userId");
+
+
+        Long userIdLong = (Long) userID;
+        Users creator = userService.getById(userIdLong);
+
+        chat.setCreator(creator);
+        chat.setCreationDate(new Date());
+
+
+        chatService.save(chat);
+
+        List<Chat> list = creator.getChat();
+        list.add(chat);
+        creator.setChat(list);
+        userService.save(creator);
 
 
 		chatService.save(chat);
