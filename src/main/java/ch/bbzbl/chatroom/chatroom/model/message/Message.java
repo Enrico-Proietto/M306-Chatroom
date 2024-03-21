@@ -2,6 +2,7 @@ package ch.bbzbl.chatroom.chatroom.model.message;
 
 import ch.bbzbl.chatroom.chatroom.model.chat.Chat;
 import ch.bbzbl.chatroom.chatroom.model.user.Users;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class Message {
 
     @ManyToOne
     private Users author;
+    @JsonIgnore
     @ManyToOne
     private Chat chat;
 }

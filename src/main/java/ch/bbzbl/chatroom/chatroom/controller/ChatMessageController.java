@@ -1,6 +1,5 @@
-package ch.bbzbl.chatroom.chatroom.restcontroller;
+package ch.bbzbl.chatroom.chatroom.controller;
 
-import ch.bbzbl.chatroom.chatroom.controller.SessionController;
 import ch.bbzbl.chatroom.chatroom.model.chat.Chat;
 import ch.bbzbl.chatroom.chatroom.model.message.Message;
 import ch.bbzbl.chatroom.chatroom.model.user.Users;
@@ -11,20 +10,16 @@ import com.sun.jdi.request.InvalidRequestStateException;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
 
-@RestController
+@Controller
 public class ChatMessageController {
 
 	private final SessionController sessionController;
@@ -40,29 +35,14 @@ public class ChatMessageController {
 	}
 
 	@GetMapping("/chat/messages")
-	public String getChatMessages(@Nullable Long chatID) {
+	@ResponseBody
+	public List<Message> getChatMessagesTest(@Nullable Long chatID) {
 		HttpSession session = sessionController.getSession();
 		Object userID = session.getAttribute("userId");
 		Users user = userService.getById((Long) userID);
-
 		if (user != null && chatID != null) {
-			var messages = messageService.findMessageByChatId(chatID);
+			return messageService.findMessageByChatId(chatID);
 
-			StringBuilder responseBuilder = new StringBuilder();
-
-			for (var message : messages) {
-
-				String date = String.format("  %td.%tm.%tY, %tH:%tM%n", message.getWrittenAt(), message.getWrittenAt(), message.getWrittenAt(), message.getWrittenAt(), message.getWrittenAt());
-
-				responseBuilder.append("<p class=messageOutput>");
-				responseBuilder.append(String.format("<span class=\"usernanme\">%s %s</span>", message.getAuthor().getFirstname(), message.getAuthor().getLastname()));
-				responseBuilder.append(String.format("<span class=\" timestamp\">%s</span>", date));
-				responseBuilder.append("<br>");
-				responseBuilder.append(String.format("<span class=\"message\">%s</span>", message.getText()));
-				responseBuilder.append("</p>");
-			}
-
-			return responseBuilder.toString();
 		}
 
 		throw new InvalidRequestStateException("Not logged in");

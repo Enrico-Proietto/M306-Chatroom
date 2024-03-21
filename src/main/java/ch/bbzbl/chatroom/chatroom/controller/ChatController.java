@@ -61,12 +61,33 @@ public class ChatController {
 			model.addAttribute("chatrooms", user.getChat());
 
 			return "chat";
-
 		}
 
 		return "redirect:/login";
 	}
 
+	@GetMapping("/createChat")
+	public String showChatForm(Model model) {
+		model.addAttribute("chat", new Chat());
+		return "createChat";
+	}
+
+	@PostMapping("/create")
+	public String processChat(Chat chat) {
+
+
+		chatService.save(chat);
+		return "redirect:/chat";
+	}
+
+	@GetMapping("/chatrooms")
+	public void getChatRooms(Model model) {
+
+	}
+
+	/*
+	Invalidates the session of user and redirects to login page
+	 */
 	@GetMapping("/logout")
 	public String logout(Model model) {
 		sessionController.setSessionInvalid();

@@ -1,5 +1,6 @@
 package ch.bbzbl.chatroom.chatroom.model.user;
 import ch.bbzbl.chatroom.chatroom.model.chat.Chat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,10 +20,13 @@ public class Users {
     private Long id;
     private String firstname;
     private String lastname;
+    @JsonIgnore
     private String email;
+    @JsonIgnore
     private Long phoneNumber;
+    @JsonIgnore
     private String password;
-
+    @JsonIgnore
     @ManyToMany
     private List<Chat> chat;
 
