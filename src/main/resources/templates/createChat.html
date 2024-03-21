@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+  <meta charset="UTF-8">
+  <title>CreateChat</title>
+  <link th:href="@{/styles/cssandjs/createChat.css}" rel="stylesheet">
+</head>
+<body>
+<div id="chatField">
+  <h1 id="title">Chatroom</h1>
+
+  <form th:action="@{/create}" th:object="${chat}" method="post">
+    <label for="name"></label>
+    <input type="text" id="name" class="chatrInput" placeholder="Name" th:field="*{name}" required>
+
+
+    <br/>
+
+
+
+    <button class="chatButton" type="submit">CreateChat</button>
+  </form>
+  <div id="chat">
+    Back to <a th:href="@{/chat}">Chats</a>
+  </div>
+</div>
+
+</body>
+</html>
