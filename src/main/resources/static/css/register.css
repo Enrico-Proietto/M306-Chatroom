@@ -7,50 +7,51 @@ body {
     width: 100%;
     color: mediumseagreen;
     font-size: 45px;
-    padding: 40px 0 20px 0;
-    text-align: center;
-    margin: 0;
+
+    padding: 40px 100px  20px 50px;
+    margin-top: 0;
+    margin-left: -50px;
     border-radius: 10px 10px 0 0;
     background-color: #363A36;
+    background-size: cover;
 }
 
-#chatField {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+#registerField {
+    margin-top: 17%;
+    margin-left: 35%;
     padding-left: 50px;
-    box-shadow: 1px 13px 17px 1px rgba(60, 179, 113, 0.50);
+    box-shadow: 1px 13px 17px 1px rgba(60,179,113,0.50);
     padding-right: 100px;
     padding-bottom: 10px;
     text-align: center;
     border-style: solid;
     border-color: mediumseagreen;
     border-radius: 10px;
-    max-width: 80%;
     width: 700px;
 }
 
-.chatButton {
+.registerButton {
     height: 50px;
-    width: 100%;
-    max-width: 510px;
+    width: 510px;
+
     border-radius: 25px;
     border-style: none;
-    color: mediumseagreen;
+
+    color : mediumseagreen;
     font-size: 25px;
+
     margin-top: 10px;
     background-color: #363A36;
 }
 
-.chatButton:hover {
-    box-shadow: 0 12px 16px 0 rgba(60, 179, 113, 0.25), 0 17px 50px 0 rgba(60, 179, 113, 0.15);
+.registerButton:hover {
+    box-shadow: 0 12px 16px 0 rgba(60,179,113,0.25), 0 17px 50px 0 rgba(60,179,113,0.15);
 }
 
-.chatInput {
+.registerInput {
     height: 50px;
-    width: 100%;
-    max-width: 250px;
+    width: 250px;
+    color: mediumseagreen;
     font-size: 17px;
     margin-top: 20px;
     border-radius: 25px;
@@ -59,7 +60,11 @@ body {
     text-indent: 15px;
 }
 
-#chat {
+#email {
+    width: 510px;
+}
+
+#login {
     margin-top: 20px;
     margin-left: 15px;
 }
@@ -67,21 +72,3 @@ body {
 a {
     color: springgreen;
 }
-
-
-#selectedUsers {
-    width: 300px;
-}
-
-
-#selectedUsers option {
-    padding: 5px;
-    font-size: 14px;
-}
-
-
-.username {
-    font-weight: bold;
-    margin-right: 5px;
-}
-

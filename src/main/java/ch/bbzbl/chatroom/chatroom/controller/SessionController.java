@@ -18,4 +18,8 @@ public class SessionController {
 	public void setSession(Users user) {
 		session.setAttribute("userId", user.getId());
 	}
+
+	public void setSessionInvalid() {
+		session.invalidate();
+	}
 }

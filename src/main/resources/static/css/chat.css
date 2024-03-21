@@ -1,0 +1,206 @@
+header {
+    background-color: #363A36;
+    padding-top: 10px;
+}
+
+body {
+    background: #252526;
+    color: mediumseagreen;
+}
+
+.chatroomListObject {
+    list-style: none;
+    height: 30px;
+    margin-top: 5px;
+    padding-bottom: 5px;
+
+    background-color: mediumseagreen;
+}
+
+#messageInput {
+    height: 50px;
+    width: 94%;
+    list-style: none;
+    border-radius: 25px;
+    border-style: none;
+    background-color: #292931;
+    text-indent: 18px;
+    color : mediumseagreen;
+    font-size: 17px;
+}
+
+#chatroomInput {
+    margin-left: 4%;
+    width: 80%;
+}
+
+#sendButton {
+    height: 50px;
+    background-color: darkolivegreen;
+    color: ghostwhite;
+    border-style: none;
+    border-radius: 4px;
+}
+
+.listOfMessages {
+    list-style: none;
+}
+
+.listOfChatrooms {
+    list-style: none;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+}
+
+#grid-header {
+    grid-column: 1 / 5;
+    background-color: #363A36;
+    padding: 10px;
+    text-align: center;
+    color: mediumseagreen;
+    border-radius: 3px;
+}
+
+.grid-userContainer {
+    grid-column: 1 / 1;
+    grid-row: 2 / 4;
+    background-color: #363A36;
+    text-align: center;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.grid-messageContainer {
+    height: max-content;
+    grid-column: 2 / 4;
+    grid-row: 2 / 4;
+    padding: 10px;
+    overflow: auto
+}
+
+.grid-chatroomContainer {
+    grid-column: 4 / 4;
+    grid-row: 2 / 4;
+    padding: 10px;
+    background-color: #363A36;
+    text-align: center;
+    border-radius: 4px;
+
+    margin-top: 5px;
+
+}
+
+.grid-footer {
+    grid-column: 2 / 4;
+    grid-row: 4 / 4;
+    padding: 10px;
+    text-align: center;
+    color: mediumseagreen;
+}
+
+.chatroomButton {
+    background-color: #69cc95;
+    color: #363A36;
+    border-style: none;
+    border-radius: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+
+    height: 35px;
+    width: 45%;
+    font-size: 20px;
+}
+
+.userList {
+    list-style: none;
+    font-size: 22px;
+    padding-left: 10px;
+}
+
+.chatroomButton:hover {
+    background-color: #61cc80;
+    cursor: pointer;
+}
+
+.messageOutput {
+    margin-bottom: 10px;
+
+}
+
+span.username {
+    font-size: 20px;
+
+}
+
+span.timestamp {
+    font-size: 17px;
+
+}
+
+span.message {
+    font-size: 23px;
+
+}
+
+#logoutButton {
+    height: 25px;
+    width: 100px;
+    border-style: none;
+    border-radius: 6px;
+    font-size: 18px;
+    color : mediumseagreen;
+    background-color: #223A22;
+}
+
+#logoutForm {
+    width: 110px;
+    text-align: right;
+}
+
+.deleteButton {
+    background-color: red;
+    width: 35px;
+    height: 25px;
+    border-style: none;
+}
+
+.deleteButton:hover {
+    background-color: #dd0000;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+
+.dropdown-content:hover {
+    display: block;
+}
+
+@media only screen and (max-width: 1678px) {
+    #messageInput {
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 1097px) {
+    #messageInput {
+        width: 86%;
+    }
+}

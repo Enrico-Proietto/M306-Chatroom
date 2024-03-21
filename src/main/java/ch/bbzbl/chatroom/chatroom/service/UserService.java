@@ -5,8 +5,9 @@ import ch.bbzbl.chatroom.chatroom.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService extends AbstractService<Users> {
+public class UserService extends RepositoryService<Users> {
     private final UserRepository repository;
+
     protected UserService(UserRepository repository) {
         super(repository);
         this.repository = repository;

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-    <link th:href="@{/styles/cssandjs/register.css}" rel="stylesheet">
+    <link th:href="@{/css/register.css}" rel="stylesheet">
 
     <link rel = "pple-touch-icon" sizes="180x180" href="/images/lock-180.png">
     <link rel = "icon" type = "image/png" sizes="32x32" href="/images/lock-32.png">
@@ -13,6 +13,14 @@
 <body>
 <div id="registerField">
     <h1 id="title">Chatroom</h1>
+
+    <div th:if="${param.errorMail}">
+        <p style="color: red; font-size: 17px;">Mail is already in use.</p>
+    </div>
+
+    <div th:if="${param.error}">
+        <p style="color: red; font-size: 17px;">Password needs 1 upper-, 1 lower- and one special character and needs a length of 8 characters.</p>
+    </div>
 
     <form th:action="@{/registerUser}" th:object="${user}" method="post">
         <label for="firstname"></label>
@@ -27,7 +35,7 @@
         <br/>
 
         <label for="phoneNumber"></label>
-        <input type="tel" id="phoneNumber" class="registerInput" placeholder="Phone number" th:field="*{phoneNumber}" required>
+        <input type="number" id="phoneNumber" min="10" class="registerInput" placeholder="Phone number" th:field="*{phoneNumber}" required>
 
         <label for="password"></label>
         <input type="password" id="password" class="registerInput" placeholder="Password" th:field="*{password}" required>
