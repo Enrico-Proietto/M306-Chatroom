@@ -129,7 +129,9 @@ body {
 
 .messageOutput {
     margin-bottom: 10px;
-
+    background-color: #223A22;
+    padding: 3px;
+    margin: 7px;
 }
 
 span.username {
