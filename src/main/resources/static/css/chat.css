@@ -157,7 +157,15 @@ span.message {
     background-color: #223A22;
 }
 
+#grid-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #logoutForm {
+    position: absolute;
+    right: 10%;
     width: 110px;
     text-align: right;
 }
